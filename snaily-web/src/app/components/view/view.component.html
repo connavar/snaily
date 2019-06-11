@@ -1,1 +1,18 @@
-This is the view page
+<br/>
+
+
+<div class="card mb-3">
+  <h3 class="card-header">{{item.title}}</h3>
+  <div class="card-body">
+    <p class="card-text">  {{getUserFullName(item.createdBy)}} is waiting for {{getUserFullName(item.waitingFor)}}</p>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Details</h5>
+  </div>
+  <div class="card-body">
+    <p class="card-text">{{item.body}}</p>
+  </div>
+  <div class="card-footer text-muted">
+    2 days ago
+  </div>
+</div>

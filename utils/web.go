@@ -7,6 +7,7 @@ import (
 )
 
 func WriteXToWriter(w http.ResponseWriter, o interface{}) (err error) {
+	w.Header().Add("Content-type", "Application/json")
 	b, err := json.Marshal(o)
 	if err != nil {
 		logrus.Errorln(err)

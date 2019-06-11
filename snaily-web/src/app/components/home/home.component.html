@@ -1,2 +1,65 @@
+<div *ngIf="!loading" class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div *ngIf="waitingForMe.length === 0" class="alert alert-dismissible alert-success">
+        <strong>Well done!</strong> No one is waiting for you.
+      </div>
+    </div>
+    <div class="col-sm">
+      <div *ngIf="createdByMe.length === 0" class="alert alert-dismissible alert-success">
+        <strong>Good news!</strong> You're not waiting for anyone.
+      </div>
+    </div>
+  </div>
+</div>
 
-home is where this text is
+<p align="right">
+  <button (click)="refresh()" type="button" class="btn btn-success">Refresh</button>
+</p>
+
+<div *ngIf="waitingForMe.length > 0" class="col-md-12">
+  <h1>People waiting for me</h1>
+  <table class="table table-hover">
+    <thead>
+    <tr class="table-light">
+      <th scope="col">Date</th>
+      <th scope="col">Title</th>
+      <th scope="col">Who is waiting</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="animated fadeIn" *ngFor="let item of waitingForMe">
+      <th>DATE</th>
+      <td>{{item.title}}</td>
+      <td>{{getUserFullName(item.createdBy)}}</td>
+      <td><a class="btn btn-sm btn-outline-primary" href="./view?id={{item.id}}">View</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div *ngIf="createdByMe.length > 0" style="margin-top: 50px;" class="col-md-12">
+  <h1>I&apos;m waiting for</h1>
+  <table class="table table-hover">
+    <thead>
+    <tr class="table-light">
+      <th scope="col">Date</th>
+      <th scope="col">Title</th>
+      <th scope="col">I&apos;m waiting for</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="animated fadeIn" *ngFor="let item of createdByMe">
+      <th>DATE</th>
+      <td>{{item.title}}</td>
+      <td>{{getUserFullName(item.waitingFor)}}</td>
+      <td><a class="btn btn-sm btn-outline-primary" href="./view?id={{item.id}}">View</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+

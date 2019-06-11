@@ -1,3 +1,112 @@
-<p>
-  New works
-</p>
+<div class="col-sm"></div>
+
+<div class="col-sm animated fadeIn">
+
+  <br/>
+  <h1>What are you waiting for?</h1>
+
+  <form>
+    <fieldset>
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <div class="input-group col-md-9">
+          <input type="text" class="form-control" id="title" name="title" aria-describedby="title"
+                 placeholder="" [(ngModel)]="title">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="body">Body</label>
+        <div class="input-group col-md-9">
+            <textarea rows="8" class="form-control" id="body" name="body" aria-describedby="waiting"
+                      placeholder="" [(ngModel)]="body"></textarea>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label for="email">Who are you waiting for? (email only)</label>
+        <div class="input-group col-md-9">
+          <input type="email" class="form-control" id="email" name="email" aria-describedby="email"
+                 placeholder="" [(ngModel)]="email">
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label for="day">When did you start waiting</label>
+        <div class="row">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-2">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="day" name="day" aria-label="" [(ngModel)]="day">
+                  <div class="input-group-append">
+                    <span class="input-group-text">Day</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="mo" aria-label="" [(ngModel)]="nmonth">
+                  <div class="input-group-append">
+                    <span class="input-group-text">Month</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="year" aria-label="" [(ngModel)]="year">
+                  <div class="input-group-append">
+                    <span class="input-group-text">Year</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <br/>
+
+
+      <div class="form-group">
+        <div class="row">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-2">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="hour" name="hour" aria-label="" [(ngModel)]="hour">
+                  <div class="input-group-append">
+                    <span class="input-group-text">Hour</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="minute" aria-label="" [(ngModel)]="minute">
+                  <div class="input-group-append">
+                    <span class="input-group-text">Minute</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div>
+        <button type="button" (click)="request()" class="btn btn-outline-primary">Submit</button>
+      </div>
+
+    </fieldset>
+  </form>
+</div>
+
+<div class="col-sm"></div>
+
+
+

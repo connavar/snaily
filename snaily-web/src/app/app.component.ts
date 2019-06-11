@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { UserState } from './model/state/userState';
-import { Router } from '@angular/router';
+import {Component} from '@angular/core';
+import {UserState} from './model/state/userState';
+import {Router} from '@angular/router';
+import {WS} from './util/ws';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,23 +12,23 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'py-portal';
 
- 
-  constructor(private router: Router) {  }
+  private version = 'v0.42';
 
-  public isLoggedIn(): boolean {
-    return UserState.isLoggedIn()
+  constructor(private router: Router) {
   }
 
-  public login() {
-    UserState.login()
+  public isLoggedIn(): boolean {
+    return UserState.isLoggedIn();
   }
 
   public logout() {
-    UserState.logout()
-    let link = ['/'];
-    this.router.navigate(link);    
+    UserState.logout();
+    const link = ['/'];
+    this.router.navigate(link);
   }
 
-
+  public isGreen(): boolean {
+    return WS.connected;
+  }
 
 }

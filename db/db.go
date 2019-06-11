@@ -1,24 +1,19 @@
 package db
 
 import (
-	"flag"
 	"github.com/jackc/pgx"
 	"github.com/sirupsen/logrus"
 )
 
-var DatabaseHost = flag.String("pghost", "localhost", "PG hostname")
-var DatabaseUser = flag.String("pguser", "postgres", "PG username")
-var DatabasePassword = flag.String("pgpassword", "snaily", "PG password")
-var DatabaseDatabase = "madast"
-var Port = flag.Uint64("pgport", 3000, "PG port")
+var DefaultConfig = Config{}
 
-func Connect() (conn *pgx.Conn, err error) {
+func Connect(config Config) (conn *pgx.Conn, err error) {
 	conn, err = pgx.Connect(pgx.ConnConfig{
-		Host:     *DatabaseHost,
-		Port:     uint16(*Port),
-		User:     *DatabaseUser,
-		Password: *DatabasePassword,
-		Database: DatabaseDatabase,
+		Host:     config.Host,
+		Port:     config.Port,
+		User:     config.User,
+		Password: config.Password,
+		Database: config.Database,
 	})
 	if err != nil {
 		logrus.Fatal("Unable to connection to database: %v\n", err)

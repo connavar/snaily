@@ -1,41 +1,78 @@
 <div class="container">
   <div class="row">
-    <div class="animated bounceInLeft col-sm-6">
-      <div class="card border-secondary mb-6" style="max-width: 30rem; height: 352px;">
+    <div class="animated col-sm-6 {{themeLogin}}">
+      <div class="card border-secondary mb-6" style="max-width: 30rem; height: 402px;">
 
         <div class="card-body">
-          <h4 class="card-title">
-            <img width="128" src="./assets/snaily.png">&nbsp; Existing users</h4>
+          <br/>
+          <h4 align="center" class="card-title">
+            &nbsp; Existing users</h4>
+          <br/>
+          <br/>
 
           <div class="form-group row">
-            <label for="rEmail" class="col-sm-2 col-form-label">Email</label>
+            <label for="lEmail" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="rEmail" value=""/>
+              <input type="text" class="form-control" id="lEmail" name="lEmail" [(ngModel)]="loginReq.email"/>
             </div>
           </div>
           <div class="form-group row">
-            <label for="rPassword" class="col-sm-3 col-form-label">Password</label>
+            <label for="lPassword" class="col-sm-3 col-form-label">Password</label>
             <div class="col-sm-9">
-              <input type="password" class="form-control" id="rPassword" value=""/>
+              <input type="password" class="form-control" id="lPassword" name="lpassword"
+                     [(ngModel)]="loginReq.password"/>
             </div>
           </div>
 
           <p class="card-text" align="center">
             <button (click)="login()" type="button" class="btn btn-outline-primary">Login</button>&nbsp;
           </p>
+
+          <p align="right"><img width="128" src="./assets/snaily.png"></p>
+
         </div>
       </div>
     </div>
-    <div class="animated bounceInRight col-sm-6">
-      <div class="card border-secondary mb-6" style="max-width: 30rem; height: 302px;">
+    <div class="col-sm-6 {{themeRegister}}">
+      <div class="card border-secondary mb-6" style="max-width: 30rem; height: 460px;">
 
         <div class="card-body">
           <h4 class="card-title">
             <img width="128" src="./assets/snaily.png"
                  style="-webkit-transform:rotate(180deg); -moz-transform: rotate(180deg); -ms-transform: rotate(180deg); -o-transform: rotate(180deg); transform: rotate(180deg);">&nbsp;
             Register here</h4>
+
+          <div class="form-group row">
+            <label for="rfirst" class="col-sm-3 col-form-label">First name</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="rfirst" name="rfirst" [(ngModel)]="registerReq.firstname"/>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="rlastname" class="col-sm-3 col-form-label">Last name</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="rlastname" name="rPassword"
+                     [(ngModel)]="registerReq.lastname"/>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="rEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="rEmail" name="rEmail" [(ngModel)]="registerReq.email"/>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="rPassword" class="col-sm-3 col-form-label">Password</label>
+            <div class="col-sm-9">
+              <input type="password" class="form-control" id="rPassword" name="rPassword"
+                     [(ngModel)]="registerReq.password"/>
+            </div>
+          </div>
+
           <p class="card-text" align="center">
-            <button (click)="login()" type="button" class="btn btn-outline-primary">Register</button>&nbsp;
+            <button (click)="register()" type="button" class="btn btn-outline-primary">Register</button>&nbsp;
           </p>
         </div>
       </div>

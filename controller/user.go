@@ -7,7 +7,7 @@ import (
 )
 
 func InsertUser(conn *pgx.Conn, item *model.User) (err error) {
-	_, err = conn.Exec("insert into madast.users values($1, $2, $3, $4)", item.ID, item.Email, item.FirstName, item.LastName)
+	_, err = conn.Exec("insert into madast.users values($1, $2, $3, $4, $5)", item.ID, item.Email, item.FirstName, item.LastName, item.Password)
 	if err != nil {
 		logrus.Errorln(err)
 	}
@@ -15,11 +15,17 @@ func InsertUser(conn *pgx.Conn, item *model.User) (err error) {
 }
 
 func GetUser(conn *pgx.Conn, ID string) (item *model.User, err error) {
-	rows, _ := conn.Query("select * from madast.users where id=$1", ID)
-	item = &model.User{}
-	err = rows.Scan(&item.ID, &item.Email, &item.FirstName, &item.LastName)
+	rows, err := conn.Query("select * from madast.users where id=$1", ID)
 	if err != nil {
 		logrus.Errorln(err)
+		return
+	}
+	if rows.Next() {
+		defer rows.Close()
+		item = &model.User{}
+		if err = rows.Scan(&item.ID, &item.Email, &item.FirstName, &item.LastName, &item.Password); err != nil {
+			logrus.Errorln(err)
+		}
 	}
 	return
 }
@@ -34,10 +40,13 @@ func UserExists(conn *pgx.Conn, email string) bool {
 
 func GetUserByEmail(conn *pgx.Conn, email string) (item *model.User, err error) {
 	rows, _ := conn.Query("select * from madast.users where email=$1", email)
-	item = &model.User{}
-	err = rows.Scan(&item.ID, &item.Email, &item.FirstName, &item.LastName)
-	if err != nil {
-		logrus.Errorln(err)
+	if rows.Next() {
+		defer rows.Close()
+		item = &model.User{}
+		err = rows.Scan(&item.ID, &item.Email, &item.FirstName, &item.LastName, &item.Password)
+		if err != nil {
+			logrus.Errorln(err)
+		}
 	}
 	return
 }
